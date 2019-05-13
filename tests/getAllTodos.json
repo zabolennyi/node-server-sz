@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "95ad908e-888b-4f40-a390-90ccafc2fc3c",
+		"name": "runner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_all_todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa414abc-19aa-486b-9c60-d6582399dc12",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Body respond with OK message\", function () {",
+							"        const response = pm.response.json();",
+							"    pm.expect(response.success).to.eql('true');",
+							"    pm.expect(pm.response.text()).to.include('todos retrieved successfully');",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:5000/api/todos",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
