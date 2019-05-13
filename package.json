@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "apiTest": "newman run tests/getAllTodos.json",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress:run": "./node_modules/.bin/cypress run --config video=false",
     "start": "nodemon server.js --exec babel-node --"
   },
   "repository": {
@@ -15,7 +17,9 @@
   "author": "Serhii Zabolennyi",
   "license": "ISC",
   "homepage": "https://github.com/zabolennyi/node-server-sz#readme",
-  "dependencies": {},
+  "dependencies": {
+    "cypress": "^3.2.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
