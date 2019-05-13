@@ -6,17 +6,18 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const PORT = 5000;
+
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`)
+});
+
 app.get('/api/todos', (req, res) => {
   res.status(200).send({
     success: 'true',
     message: 'todos retrieved successfully',
     todos: db
   })
-});
-const PORT = 5000;
-
-app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`)
 });
 
 app.post('/api/todos', (req, res) => {
@@ -59,4 +60,22 @@ app.post('/api/todos', (req, res) => {
      success: 'false',
      message: 'todo does not exist',
     });
+  });
+
+  app.delete('/api/todos/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+  
+    db.map((todo, index) => {
+      if (todo.id === id) {
+         db.splice(index, 1);
+         return res.status(200).send({
+           success: 'true',
+           message: 'Todo deleted successfuly',
+         });
+      }
+    });
+      return res.status(404).send({
+        success: 'false',
+        message: 'todo not found',
+      });
   });
