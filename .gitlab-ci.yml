@@ -17,9 +17,10 @@ cypress_api_test:
   script:
     - npm ci
     - npm install --save-dev cypress
+    - npm install
     - npm start &
     - sleep 15
-    - npm run cy:run
+    - npm run cypress:run
   only:
     - master
 
@@ -30,9 +31,10 @@ newman_api_test:
     entrypoint: [""]
   script:
     - newman --version
+    - npm install nodemon --save
+    - npm install -g newman-reporter-htmlextra
     - npm start &
     - sleep 15
-    - npm install -g newman-reporter-htmlextra
     - newman run tests/getAllTodos.json --reporters=cli,htmlextra --reporter-htmlextra-export getAllTodos-report.html
   allow_failure: true
   artifacts:
