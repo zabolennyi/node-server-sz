@@ -1,0 +1,43 @@
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+stages:
+  - api_tests
+  -
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+
+cypress_api_test:
+  image: cypress/base:10
+  stage: api_test
+  script:
+    - npm ci
+    - npm install --save-dev cypress
+    - npm start &
+    - sleep 15
+    - npm run cy:run
+  only:
+    - master
+
+newman_api_test:
+  stage: api_test
+  image:
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+    - newman --version
+    - npm start &
+    - sleep 15
+    - npm install -g newman-reporter-htmlextra
+    - newman run tests/getAllTodos.json --reporters=cli,htmlextra --reporter-htmlextra-export getAllTodos-report.html
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+      - getAllTodos-report.html
+  only:
+    - master

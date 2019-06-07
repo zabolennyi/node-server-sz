@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "apiTest": "newman run tests/getAllTodos.json",
+    "newmanApiTest": "newman run tests/getAllTodos.json",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress:run": "./node_modules/.bin/cypress run --config video=false",
     "start": "nodemon server.js --exec babel-node --"
