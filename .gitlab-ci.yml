@@ -13,7 +13,7 @@ cache:
 
 cypress_api_test:
   image: cypress/base:10
-  stage: api_test
+  stage: api_tests
   script:
     - npm ci
     - npm install --save-dev cypress
@@ -24,7 +24,7 @@ cypress_api_test:
     - master
 
 newman_api_test:
-  stage: api_test
+  stage: api_tests
   image:
     name: postman/newman_alpine33
     entrypoint: [""]
