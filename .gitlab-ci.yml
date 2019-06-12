@@ -20,7 +20,12 @@ cypress_api_test:
     - npm install
     - npm start &
     - sleep 15
-    - npm run cy:run
+    - npm run cy:run-with-report
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+        - mochawesome-report/mochawesome.html
   only:
     - master
 
