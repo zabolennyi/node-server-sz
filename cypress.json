@@ -2,6 +2,6 @@
     "baseUrl": "http://localhost:5000",
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
-        "configFile": "reporterOpts.json"
+        "configFile": "reporterConfig.json"
     }
 }

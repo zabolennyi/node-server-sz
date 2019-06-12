@@ -24,4 +24,3 @@ const initialTodos = [
     .its('status')
           .should('equal',200);
   })
-
