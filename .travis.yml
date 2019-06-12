@@ -22,5 +22,5 @@ before_script:
 
 script:
   - npm run newmanApiTest
-  - npm run cypress:run
+  - npm run cy:run
   - kill $(jobs -p) || true

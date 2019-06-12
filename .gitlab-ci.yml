@@ -20,7 +20,7 @@ cypress_api_test:
     - npm install
     - npm start &
     - sleep 15
-    - npm run cypress:run
+    - npm run cy:run
   only:
     - master
 
