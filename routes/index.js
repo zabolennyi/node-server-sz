@@ -106,7 +106,7 @@ router.get('/api/todos', (req, res) => {
       };
       db.splice(itemIndex, 1, updatedTodo);
     
-      return res.status(201).send({
+      return res.status(200).send({
         success: 'true',
         message: 'todo updated successfully',
         updatedTodo,
