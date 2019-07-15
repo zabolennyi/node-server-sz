@@ -59,7 +59,7 @@ router.get('/api/todos', (req, res) => {
       db.map((todo, index) => {
         if (todo.id === id) {
            db.splice(index, 1);
-           return res.status(200).send({
+           return res.status(204).send({
              success: 'true',
              message: 'Todo deleted successfuly',
            });
@@ -110,6 +110,23 @@ router.get('/api/todos', (req, res) => {
         success: 'true',
         message: 'todo updated successfully',
         updatedTodo,
+      });
+    });
+
+    router.patch('/api/todos/:id', (req, res) => {
+      const id = parseInt(req.params.id, 10);
+      let todoFound;
+      let itemIndex;
+      db.map((todo, index) => {
+        if (todo.id === id) {
+          todoFound = todo;
+          itemIndex = index;
+        }
+      });
+      
+      return res.status(200).send({
+        success: 'true',
+        message: 'todo updated successfully',
       });
     });
 
