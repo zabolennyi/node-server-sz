@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "10.15.3"
+  - 10.8
 
 install:
   - npm install 
@@ -15,9 +15,6 @@ cache:
     - npm run cy:verify
     
 before_script:
-  - node --version
-  - npm --version
-  - node_modules/.bin/newman --version
   - npm start &
 
 script:
